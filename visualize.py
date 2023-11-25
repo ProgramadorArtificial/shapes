@@ -1,8 +1,7 @@
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-import json
 import os
+import json
 import argparse
+import matplotlib.pyplot as plt
 
 
 def json_listing(json_data):
@@ -16,9 +15,9 @@ def json_listing(json_data):
 def bbox_plot(img, boxes):
 
 	fig, ax = plt.subplots(
-			figsize=(int(500/100), int(500/100)))
-	ax.set_xlim([0, 500])
-	ax.set_ylim([0, 500])
+			figsize=(int(len(img)/100), int(len(img)/100)))
+	ax.set_xlim([0, len(img)])
+	ax.set_ylim([0, len(img)])
 	plt.gca().invert_yaxis()
 	ax.imshow(img)
 	objs = []
@@ -35,14 +34,14 @@ def bbox_plot(img, boxes):
 def bounding_boxes(path):
 
 	img_path, lab_path = sorted(os.listdir(path))
-	img_path = os.path.join(path, img_path)
-	lab_path = os.path.join(path, lab_path)
+	img_path = os.path.join(path, img_path, 'train')
+	lab_path = os.path.join(path, lab_path, 'train')
 	img_list = sorted(os.listdir(img_path))
 	lab_list = sorted(os.listdir(lab_path))
 	for im, lab in zip(img_list, lab_list):
 		img = plt.imread(os.path.join(img_path, im))
-		print (im)
-		print (lab)
+		print(im)
+		print(lab)
 		with open(os.path.join(lab_path, lab), 'r') as json_data:
 			json_data = json.load(json_data)
 			box_list = json_listing(json_data)
@@ -52,6 +51,6 @@ def bounding_boxes(path):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument(
-			"--dataset_dir", help="dataset path to be visualize")
+			"--dataset_dir", help="dataset path to be visualize", default='tmp/dataset')
 	args = parser.parse_args()
 	bounding_boxes(args.dataset_dir)
