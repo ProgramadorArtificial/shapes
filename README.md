@@ -20,6 +20,6 @@ python visualize.py --dataset_dir tmp/dataset
 ```
 
 ## Autor
-* **cjpurackal** - [cjpurackal](https://github.com/cjpurackal)
+* **Christie Jacob** - [GitHub](https://github.com/cjpurackal)
 ### Autor do fork
 * **Programador Artificial** - [GitHub](https://github.com/ProgramadorArtificial) - [YouTube](https://www.youtube.com/@ProgramadorArtificial)
